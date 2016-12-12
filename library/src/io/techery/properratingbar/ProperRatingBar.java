@@ -53,7 +53,7 @@ public class ProperRatingBar extends LinearLayout {
     private static final int DF_SYMBOLIC_TEXT_NORMAL_COLOR = Color.BLACK;
     private static final int DF_SYMBOLIC_TEXT_SELECTED_COLOR = Color.GRAY;
     private static final int DF_TICK_SPACING_RES = R.dimen.prb_drawable_tick_default_spacing;
-
+    private static final int DF_DRAWABLE_SIZE = R.dimen.prb_drawable_default_size;
     private int totalTicks;
     private int lastSelectedTickIndex;
     private boolean clickable;
@@ -62,6 +62,7 @@ public class ProperRatingBar extends LinearLayout {
     private int customTextStyle;
     private int customTextNormalColor;
     private int customTextSelectedColor;
+    private int drawableSize;
     private Drawable tickNormalDrawable;
     private Drawable tickSelectedDrawable;
     private int tickSpacing;
@@ -80,6 +81,7 @@ public class ProperRatingBar extends LinearLayout {
         //
         totalTicks = a.getInt(R.styleable.ProperRatingBar_prb_totalTicks, DF_TOTAL_TICKS);
         rating = a.getInt(R.styleable.ProperRatingBar_prb_defaultRating, DF_DEFAULT_TICKS);
+        drawableSize = a.getInt(R.styleable.ProperRatingBar_prb_drawableSize, DF_DRAWABLE_SIZE);
         //
         clickable = a.getBoolean(R.styleable.ProperRatingBar_prb_clickable, DF_CLICKABLE);
         //
@@ -145,6 +147,7 @@ public class ProperRatingBar extends LinearLayout {
     private void addDrawableTick(Context context, int position) {
         ImageView iv = new ImageView(context);
         iv.setPadding(tickSpacing, tickSpacing, tickSpacing, tickSpacing);
+        iv.setLayoutParams(new LinearLayoutCompat.LayoutParams(drawableSize,drawableSize));
         updateTicksClickParameters(iv, position);
         this.addView(iv);
     }
